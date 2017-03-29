@@ -1,30 +1,22 @@
-$( document ).ready(function() {
-
-	var aimantActif = false;
-
-
-
-	$("#jeu").click(function(){
-		aimantActif = !aimantActif;
-		console.log(aimantActif);
-	});
-
-
-	function point(l){
-		var widht = $("#jeu").css("widht");
-		var heigth = $("#jeu").css("heigth");
-		widht = parseInt("width");
-		heigth = parseInt("height");
-
-		for(var i = 0; i < l ; i++) {
-			var xpos = Math.round(Math.random()*widht);
-			var ypos = Math.round(Math.random()*heigth);
-			var deb = $("<span class='debris' ></span>").css({ "top": xpos, "left": ypos });
-			$('#jeu').append(deb);
-
-		}
+$(document).ready(function(){
+// Générer les débris.
+	var x = $('#jeu').css("width");
+	var y = $('#jeu').css("height");
+	y = parseInt(y);
+	x = parseInt(x);
+	function pdebris(a) {
+		for(var i = 0; i < a ; i++){
+			var xp = Math.round(Math.random()* (x - 20));
+			var yp = Math.round(Math.random()* (y - 20));
+			var result = $('<p class="debris"></p>').css({ "top": xp , "left": yp })
+			$("#jeu").append(result);
+		};
 	}
+		pdebris(Math.round(Math.random()* 300));
 
-point(100);
-
-});
+	$("#jeu").mouseup(function () {
+	//	$( '.debris' ).remove('.debris' );
+		$("#jeu").appendTo('debris').remove();
+	})
+	
+	});
